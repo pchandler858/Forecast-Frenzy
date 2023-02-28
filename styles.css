@@ -1,0 +1,107 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: "Varela Round", sans-serif;
+}
+
+body {
+  background-color: white;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+header {
+  background: linear-gradient(to right, #0077c2, #004a8f);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+}
+.search-container {
+  float: left;
+  width: 30%;
+}
+
+.main-container {
+  margin-left: 32%;
+}
+
+.search-box {
+  margin: 20px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn {
+  min-width: 149px;
+}
+
+/* .search-history {
+  margin: 0 20px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+} */
+
+/* add some spacing between the search history buttons */
+.search-history button {
+  margin-bottom: 10px;
+  float: none;
+}
+.search-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.weather-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 20px;
+}
+.current-weather {
+  width: 60%;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  margin-left: 0;
+}
+.current-weather h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.current-weather p {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.forecast-container {
+  /* white-space: nowrap; */
+  overflow-x: auto;
+}
+
+.forecast-card {
+  border: 1px solid #ccc;
+}
+.forecast-card p {
+  margin: 5px 0;
+}
+.forecast-card img {
+  width: 60px;
+  margin-bottom: 10px;
+}
