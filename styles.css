@@ -109,3 +109,7 @@ header {
 .test {
   margin-left: 0;
 }
+
+.hide {
+  display: none;
+}
