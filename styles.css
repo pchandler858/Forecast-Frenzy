@@ -113,3 +113,8 @@ header {
 .hide {
   display: none;
 }
+
+.icon-image {
+  width: 50px;
+  height: 50px;
+}

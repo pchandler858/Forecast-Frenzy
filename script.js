@@ -175,7 +175,7 @@ function renderForecast(data) {
       cardEl.classList.add("card", "bg-primary", "text-light", "m-2");
       cardBodyEl.classList.add("card-body");
       dateEl.classList.add("card-title");
-      iconEl.classList.add("card-img");
+      iconEl.classList.add("icon-img");
       temperatureEl.classList.add("card-text");
       humidityEl.classList.add("card-text");
       windSpeedEl.classList.add("card-text");
