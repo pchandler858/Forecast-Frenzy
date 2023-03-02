@@ -133,6 +133,7 @@ function renderCurrentWeather(data) {
 
   // Add HTML elements to current weather element
   currentWeatherEl.innerHTML = "";
+  currentWeatherEl.classList.remove("hide");
   currentWeatherEl.appendChild(cityNameEl);
   currentWeatherEl.appendChild(dateEl);
   currentWeatherEl.appendChild(iconEl);
