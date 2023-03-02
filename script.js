@@ -110,6 +110,7 @@ function renderCurrentWeather(data) {
   const temperature = data.main.temp;
   const humidity = data.main.humidity;
   const windSpeed = data.wind.speed;
+  console.log(temperature);
 
   // Create HTML elements to display data
   const cityNameEl = document.createElement("h2");
@@ -156,11 +157,11 @@ function renderForecast(data) {
     if (item.dt_txt.indexOf("12:00:00") !== -1) {
       // Get required data from API response
       const date = new Date(item.dt * 1000);
-      const icon =
-        "https://openweathermap.org/img/w/${item.weather[0].icon}.png";
+      const icon = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
       const temperature = item.main.temp;
       const humidity = item.main.humidity;
       const windSpeed = item.wind.speed;
+      console.log(item);
       // Create HTML elements to display data
       const cardEl = document.createElement("div");
       const cardBodyEl = document.createElement("div");
