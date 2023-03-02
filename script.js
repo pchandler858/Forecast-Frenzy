@@ -54,12 +54,40 @@ async function getWeatherData(city) {
   renderForecast(forecastData);
 }
 
-// Function to add city to search history
+// // Function to add city to search history
+// function addCityToSearchHistory(city) {
+//   // If city already exists in search history, remove it
+//   const index = searchHistory.indexOf(city);
+//   if (index > -1) {
+//     searchHistory.splice(index, 1);
+//   }
+
+//   // Add city to beginning of search history array
+//   searchHistory.unshift(city);
+
+//   // If search history has more than 5 items, remove the oldest item
+//   if (searchHistory.length > 5) {
+//     searchHistory.pop();
+//   }
+
+//   // Render search history
+//   renderSearchHistory();
+// }
+
+// Function to add city to search history and store in local storage
 function addCityToSearchHistory(city) {
-  // If city already exists in search history, remove it
+  // Get the search history from local storage
+  let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+  // Check if the city already exists in the search history
   const index = searchHistory.indexOf(city);
+
   if (index > -1) {
+    // Remove only the duplicate item from the search history
     searchHistory.splice(index, 1);
+
+    // Update the search history in local storage
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
   }
 
   // Add city to beginning of search history array
@@ -70,17 +98,24 @@ function addCityToSearchHistory(city) {
     searchHistory.pop();
   }
 
+  // Store search history in local storage
+  localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+
   // Render search history
   renderSearchHistory();
 }
 
-// Function to render search history
+// Function to render search history from local storage
 function renderSearchHistory() {
   // Clear existing search history
   searchHistoryEl.innerHTML = "";
 
-  // Render each city in search history
-  searchHistory.forEach((city) => {
+  // Retrieve search history from local storage
+  const searchHistoryFromStorage =
+    JSON.parse(localStorage.getItem("searchHistory")) || [];
+
+  // Render the last 5 searches from search history
+  searchHistoryFromStorage.slice(0, 5).forEach((city) => {
     const buttonEl = document.createElement("button");
     buttonEl.textContent = city;
     buttonEl.classList.add(
