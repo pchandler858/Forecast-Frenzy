@@ -147,7 +147,7 @@ function renderCurrentWeather(data) {
   console.log("current temp: ", temperature);
   console.log("current data", data);
   const humidity = data.main.humidity;
-  const windSpeed = data.wind.speed;
+  const windSpeed = Math.round(data.wind.speed);
   console.log(temperature);
 
   // Create HTML elements to display data
@@ -167,7 +167,7 @@ function renderCurrentWeather(data) {
   }/${date.getDate()}/${date.getFullYear()})`;
   temperatureEl.textContent = `Temperature: ${temperature} °F`;
   humidityEl.textContent = `Humidity: ${humidity}%`;
-  windSpeedEl.textContent = `Wind Speed: ${windSpeed} km/h`;
+  windSpeedEl.textContent = `Wind Speed: ${windSpeed} MPH`;
   iconEl.src = icon; // Set src attribute of iconEl
 
   // Add HTML elements to current weather element
@@ -198,7 +198,7 @@ function renderForecast(data) {
       const icon = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
       const temperature = Math.round(item.main.temp);
       const humidity = item.main.humidity;
-      const windSpeed = item.wind.speed;
+      const windSpeed = Math.round(item.wind.speed);
       console.log(item);
       // Create HTML elements to display data
       const cardEl = document.createElement("div");
@@ -226,7 +226,7 @@ function renderForecast(data) {
       iconEl.setAttribute("alt", item.weather[0].description);
       temperatureEl.textContent = `Temp: ${temperature} °F`;
       humidityEl.textContent = `Humidity: ${humidity}%`;
-      windSpeedEl.textContent = `Wind: ${windSpeed} km/h`;
+      windSpeedEl.textContent = `Wind: ${windSpeed} MPH`;
 
       // Add HTML elements to forecast element
       forecastEl.appendChild(cardEl);
