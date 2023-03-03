@@ -29,7 +29,7 @@ function handleSearchFormSubmit(event) {
 
 async function getWeatherData(city) {
   // Build URL for current weather data
-  const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`;
+  const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${API_KEY}`;
 
   // Call API to get current weather data
   const currentWeatherResponse = await fetch(currentWeatherUrl);
@@ -40,7 +40,8 @@ async function getWeatherData(city) {
   const lon = currentWeatherData.coord.lon;
 
   // Build URL for forecast data
-  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`;
+  console.log(forecastUrl);
 
   // Call API to get forecast data
   const forecastResponse = await fetch(forecastUrl);
@@ -142,7 +143,9 @@ function renderCurrentWeather(data) {
   const cityName = data.name;
   const date = new Date(data.dt * 1000);
   const icon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
-  const temperature = data.main.temp;
+  const temperature = Math.round(data.main.temp);
+  console.log("current temp: ", temperature);
+  console.log("current data", data);
   const humidity = data.main.humidity;
   const windSpeed = data.wind.speed;
   console.log(temperature);
@@ -162,7 +165,7 @@ function renderCurrentWeather(data) {
   dateEl.textContent = `(${
     date.getMonth() + 1
   }/${date.getDate()}/${date.getFullYear()})`;
-  temperatureEl.textContent = `Temperature: ${temperature} °C`;
+  temperatureEl.textContent = `Temperature: ${temperature} °F`;
   humidityEl.textContent = `Humidity: ${humidity}%`;
   windSpeedEl.textContent = `Wind Speed: ${windSpeed} km/h`;
   iconEl.src = icon; // Set src attribute of iconEl
@@ -193,7 +196,7 @@ function renderForecast(data) {
       // Get required data from API response
       const date = new Date(item.dt * 1000);
       const icon = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
-      const temperature = item.main.temp;
+      const temperature = Math.round(item.main.temp);
       const humidity = item.main.humidity;
       const windSpeed = item.wind.speed;
       console.log(item);
@@ -221,7 +224,7 @@ function renderForecast(data) {
       }/${date.getDate()}/${date.getFullYear()}`;
       iconEl.setAttribute("src", icon);
       iconEl.setAttribute("alt", item.weather[0].description);
-      temperatureEl.textContent = `Temp: ${temperature} °C`;
+      temperatureEl.textContent = `Temp: ${temperature} °F`;
       humidityEl.textContent = `Humidity: ${humidity}%`;
       windSpeedEl.textContent = `Wind: ${windSpeed} km/h`;
 
@@ -239,3 +242,4 @@ function renderForecast(data) {
 
 // Add event listener to search form
 searchFormEl.addEventListener("click", handleSearchFormSubmit);
+renderSearchHistory();
