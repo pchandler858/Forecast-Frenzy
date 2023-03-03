@@ -210,7 +210,15 @@ function renderForecast(data) {
       const windSpeedEl = document.createElement("p");
 
       // Set classes for HTML elements
-      cardEl.classList.add("card", "bg-primary", "text-light", "m-2");
+      cardEl.classList.add(
+        "col-lg-2",
+        "col-md-12",
+        "forecast-card",
+        "card",
+        "bg-primary",
+        "text-light",
+        "m-2"
+      );
       cardBodyEl.classList.add("card-body");
       dateEl.classList.add("card-title");
       iconEl.classList.add("icon-img");
