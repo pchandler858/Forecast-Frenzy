@@ -29,7 +29,7 @@ function renderForecast(data) {
       cardEl.classList.add("card", "bg-primary", "text-white");
   
       const cardBodyEl = document.createElement("div");
-      cardBodyEl.classList.add("card-body", "p-2");
+      cardBodyEl.classList.add("card-body");
   
       const dateEl = document.createElement("p");
       dateEl.classList.add("card-text");

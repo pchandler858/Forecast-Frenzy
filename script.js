@@ -60,7 +60,6 @@ function addCityToSearchHistory(city) {
   let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
   // Check if the city already exists in the search history
-  // const index = searchHistory.indexOf(city);
   const index = searchHistory.findIndex(
     (item) => item.toLowerCase() === city.toLowerCase()
   );
@@ -132,6 +131,8 @@ function renderCurrentWeather(data) {
   console.log("current data", data);
   const humidity = data.main.humidity;
   const windSpeed = Math.round(data.wind.speed);
+  const highTemp = Math.round(data.main.temp_max);
+  const lowTemp = Math.round(data.main.temp_min);
   console.log(temperature);
 
   // Create HTML elements to display data
@@ -143,24 +144,30 @@ function renderCurrentWeather(data) {
   const humidityEl = document.createElement("p");
   const windSpeedEl = document.createElement("p");
   const iconEl = document.createElement("img"); // Define iconEl variable
+  const highTempEl = document.createElement("p");
+  const lowTempEl = document.createElement("p");
 
   // Set text content of HTML elements
   cityNameEl.textContent = cityName;
   dateEl.textContent = `(${
     date.getMonth() + 1
   }/${date.getDate()}/${date.getFullYear()})`;
-  temperatureEl.textContent = `Temperature: ${temperature} °F`;
+  temperatureEl.textContent = `Now: ${temperature} °F`;
   humidityEl.textContent = `Humidity: ${humidity}%`;
   windSpeedEl.textContent = `Wind Speed: ${windSpeed} MPH`;
   iconEl.src = icon; // Set src attribute of iconEl
+  highTempEl.textContent = `High: ${highTemp} °F`;
+  lowTempEl.textContent = `Low: ${lowTemp} °F`;
 
   // Add HTML elements to current weather element
   currentWeatherEl.innerHTML = "";
   currentWeatherEl.classList.remove("hide");
   currentWeatherEl.appendChild(cityNameEl);
   currentWeatherEl.appendChild(dateEl);
-  currentWeatherEl.appendChild(iconEl);
   currentWeatherEl.appendChild(temperatureEl);
+  currentWeatherEl.appendChild(iconEl);
+  currentWeatherEl.appendChild(lowTempEl);
+  currentWeatherEl.appendChild(highTempEl);
   currentWeatherEl.appendChild(humidityEl);
   currentWeatherEl.appendChild(windSpeedEl);
 }
@@ -219,9 +226,10 @@ function renderForecast(data) {
         "card",
         "bg-primary",
         "text-light",
-        "m-2"
+        "m-2",
+        "ma-2"
       );
-      cardBodyEl.classList.add("card-body");
+      cardBodyEl.classList.add("ma-2", "card-body");
       dateEl.classList.add("card-title", "fs-6");
       iconEl.classList.add("icon-img");
       temperatureEl.classList.add("card-text");
