@@ -55,33 +55,16 @@ async function getWeatherData(city) {
   renderForecast(forecastData);
 }
 
-// // Function to add city to search history
-// function addCityToSearchHistory(city) {
-//   // If city already exists in search history, remove it
-//   const index = searchHistory.indexOf(city);
-//   if (index > -1) {
-//     searchHistory.splice(index, 1);
-//   }
-
-//   // Add city to beginning of search history array
-//   searchHistory.unshift(city);
-
-//   // If search history has more than 5 items, remove the oldest item
-//   if (searchHistory.length > 5) {
-//     searchHistory.pop();
-//   }
-
-//   // Render search history
-//   renderSearchHistory();
-// }
-
 // Function to add city to search history and store in local storage
 function addCityToSearchHistory(city) {
   // Get the search history from local storage
   let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
   // Check if the city already exists in the search history
-  const index = searchHistory.indexOf(city);
+  // const index = searchHistory.indexOf(city);
+  const index = searchHistory.findIndex(
+    (item) => item.toLowerCase() === city.toLowerCase()
+  );
 
   if (index > -1) {
     // Remove only the duplicate item from the search history
@@ -118,6 +101,7 @@ function renderSearchHistory() {
   // Render the last 5 searches from search history
   searchHistoryFromStorage.slice(0, 5).forEach((city) => {
     const buttonEl = document.createElement("button");
+    // buttonEl.textContent = city;
     buttonEl.textContent = city;
     buttonEl.classList.add(
       "btn",
@@ -125,7 +109,8 @@ function renderSearchHistory() {
       "mb-2",
       "btn-lg",
       "btn-block",
-      "w-100"
+      "w-100",
+      "text-capitalize"
     );
 
     // Add event listener to button
