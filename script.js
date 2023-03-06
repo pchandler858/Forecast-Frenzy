@@ -124,8 +124,8 @@ function renderSearchHistory() {
 function renderCurrentWeather(data) {
   // Get required data from API response
   const cityName = data.name;
-  const date = new Date(data.dt * 1000);
   const icon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
+  const date = new Date(data.dt * 1000);
   const temperature = Math.round(data.main.temp);
   console.log("current temp: ", temperature);
   console.log("current data", data);
@@ -148,10 +148,12 @@ function renderCurrentWeather(data) {
   const lowTempEl = document.createElement("p");
 
   // Set text content of HTML elements
-  cityNameEl.textContent = cityName;
-  dateEl.textContent = `(${
-    date.getMonth() + 1
-  }/${date.getDate()}/${date.getFullYear()})`;
+  cityNameEl.textContent =
+    cityName +
+    ` (${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()})`;
+  // dateEl.textContent = `(${
+  //   date.getMonth() + 1
+  // }/${date.getDate()}/${date.getFullYear()})`;
   temperatureEl.textContent = `Now: ${temperature} °F`;
   humidityEl.textContent = `Humidity: ${humidity}%`;
   windSpeedEl.textContent = `Wind Speed: ${windSpeed} MPH`;
@@ -163,9 +165,9 @@ function renderCurrentWeather(data) {
   currentWeatherEl.innerHTML = "";
   currentWeatherEl.classList.remove("hide");
   currentWeatherEl.appendChild(cityNameEl);
+  currentWeatherEl.appendChild(iconEl);
   currentWeatherEl.appendChild(dateEl);
   currentWeatherEl.appendChild(temperatureEl);
-  currentWeatherEl.appendChild(iconEl);
   currentWeatherEl.appendChild(lowTempEl);
   currentWeatherEl.appendChild(highTempEl);
   currentWeatherEl.appendChild(humidityEl);
