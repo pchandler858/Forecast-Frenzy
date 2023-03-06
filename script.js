@@ -246,8 +246,8 @@ function renderForecast(data) {
       forecastEl.appendChild(cardEl);
       cardEl.appendChild(cardBodyEl);
       cardBodyEl.appendChild(dateEl);
-      cardBodyEl.appendChild(iconEl);
       cardBodyEl.appendChild(temperatureEl);
+      cardBodyEl.appendChild(iconEl);
       cardBodyEl.appendChild(lowEl);
       cardBodyEl.appendChild(highEl);
       cardBodyEl.appendChild(humidityEl);
