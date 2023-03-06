@@ -29,3 +29,9 @@ To run the application, simply open the `index.html` file in your web browser.
 The application is built using HTML, CSS, and JavaScript. It uses the Fetch API to make HTTP requests to the OpenWeatherMap API and retrieve weather data. The application uses `localStorage` to store the search history so that it can be retrieved even after the page is refreshed or closed.
 
 The `script.js` file contains the JavaScript code that handles form submission, retrieves weather data from the OpenWeatherMap API, updates the search history, and renders the weather information on the page.
+
+## License
+
+This project is licensed under the MIT License.
+
+## Demonstration
