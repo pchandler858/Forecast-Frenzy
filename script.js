@@ -13,7 +13,6 @@ let searchHistory = [];
 
 // Function to handle form submit event
 function handleSearchFormSubmit(event) {
-  console.log("test only");
   event.preventDefault();
 
   // Get search input value
@@ -197,7 +196,7 @@ function renderForecast(data) {
       // Set classes for HTML elements
       cardEl.classList.add(
         "col-lg-2",
-        "col-md-12",
+        "col-12",
         "forecast-card",
         "card",
         "bg-primary",
@@ -205,7 +204,7 @@ function renderForecast(data) {
         "m-2"
       );
       cardBodyEl.classList.add("card-body");
-      dateEl.classList.add("card-title");
+      dateEl.classList.add("card-title", "fs-6");
       iconEl.classList.add("icon-img");
       temperatureEl.classList.add("card-text");
       humidityEl.classList.add("card-text");
