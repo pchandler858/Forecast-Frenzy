@@ -1,5 +1,7 @@
 # Forecast-Frenzy
 
+## [Live Page](https://pchandler858.github.io/Forecast-Frenzy/)
+
 This is a web application that retrieves and displays the current weather and forecast for a given city using OpenWeatherMap API. The application stores the search history of the last 5 cities that were searched, so that users can quickly access the weather information for those cities again without typing in the city name again.
 
 ## API Key
