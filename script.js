@@ -127,13 +127,8 @@ function renderCurrentWeather(data) {
   const icon = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
   const date = new Date(data.dt * 1000);
   const temperature = Math.round(data.main.temp);
-  console.log("current temp: ", temperature);
-  console.log("current data", data);
   const humidity = data.main.humidity;
   const windSpeed = Math.round(data.wind.speed);
-  const highTemp = Math.round(data.main.temp_max);
-  const lowTemp = Math.round(data.main.temp_min);
-  console.log(temperature);
 
   // Create HTML elements to display data
   const cityNameEl = document.createElement("h2");
@@ -144,22 +139,15 @@ function renderCurrentWeather(data) {
   const humidityEl = document.createElement("p");
   const windSpeedEl = document.createElement("p");
   const iconEl = document.createElement("img"); // Define iconEl variable
-  const highTempEl = document.createElement("p");
-  const lowTempEl = document.createElement("p");
 
   // Set text content of HTML elements
   cityNameEl.textContent =
     cityName +
     ` (${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()})`;
-  // dateEl.textContent = `(${
-  //   date.getMonth() + 1
-  // }/${date.getDate()}/${date.getFullYear()})`;
   temperatureEl.textContent = `Now: ${temperature} °F`;
   humidityEl.textContent = `Humidity: ${humidity}%`;
   windSpeedEl.textContent = `Wind Speed: ${windSpeed} MPH`;
   iconEl.src = icon; // Set src attribute of iconEl
-  highTempEl.textContent = `High: ${highTemp} °F`;
-  lowTempEl.textContent = `Low: ${lowTemp} °F`;
 
   // Add HTML elements to current weather element
   currentWeatherEl.innerHTML = "";
@@ -168,8 +156,6 @@ function renderCurrentWeather(data) {
   currentWeatherEl.appendChild(iconEl);
   currentWeatherEl.appendChild(dateEl);
   currentWeatherEl.appendChild(temperatureEl);
-  currentWeatherEl.appendChild(lowTempEl);
-  currentWeatherEl.appendChild(highTempEl);
   currentWeatherEl.appendChild(humidityEl);
   currentWeatherEl.appendChild(windSpeedEl);
 }
