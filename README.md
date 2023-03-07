@@ -35,3 +35,5 @@ The `script.js` file contains the JavaScript code that handles form submission, 
 This project is licensed under the MIT License.
 
 ## Demonstration
+
+![screen-gif](/assets/demo.gif)
