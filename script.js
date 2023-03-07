@@ -192,31 +192,11 @@ function renderForecast(data) {
       const temperature = Math.round(item.main.temp);
       const humidity = item.main.humidity;
       const windSpeed = Math.round(item.wind.speed);
-      console.log(item);
-      // Find daily high and low temperatures
-      const today = date.toLocaleDateString();
-      const tomorrow = new Date(date);
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      const tomorrowStr = tomorrow.toLocaleDateString();
-      const temps = [];
-      forecastItems.forEach((forecastItem) => {
-        const forecastDate = new Date(
-          forecastItem.dt * 1000
-        ).toLocaleDateString();
-        if (forecastDate === today || forecastDate === tomorrowStr) {
-          temps.push(forecastItem.main.temp);
-        }
-      });
-      const high = Math.max(...temps);
-      const low = Math.min(...temps);
-      // Create HTML elements to display data
       const cardEl = document.createElement("div");
       const cardBodyEl = document.createElement("div");
       const dateEl = document.createElement("h5");
       const iconEl = document.createElement("img");
       const temperatureEl = document.createElement("p");
-      const highEl = document.createElement("p");
-      const lowEl = document.createElement("p");
       const humidityEl = document.createElement("p");
       const windSpeedEl = document.createElement("p");
 
@@ -235,8 +215,6 @@ function renderForecast(data) {
       dateEl.classList.add("card-title", "fs-6");
       iconEl.classList.add("icon-img");
       temperatureEl.classList.add("card-text");
-      highEl.classList.add("card-text");
-      lowEl.classList.add("card-text");
       humidityEl.classList.add("card-text");
       windSpeedEl.classList.add("card-text");
 
@@ -246,9 +224,7 @@ function renderForecast(data) {
       }/${date.getDate()}/${date.getFullYear()}`;
       iconEl.setAttribute("src", icon);
       iconEl.setAttribute("alt", item.weather[0].description);
-      temperatureEl.textContent = `Now: ${temperature} °F`;
-      highEl.textContent = `High: ${Math.round(high)} °F`;
-      lowEl.textContent = `Low: ${Math.round(low)} °F`;
+      temperatureEl.textContent = `Temp: ${temperature} °F`;
       humidityEl.textContent = `Humidity: ${humidity}%`;
       windSpeedEl.textContent = `Wind: ${windSpeed} MPH`;
 
@@ -256,10 +232,8 @@ function renderForecast(data) {
       forecastEl.appendChild(cardEl);
       cardEl.appendChild(cardBodyEl);
       cardBodyEl.appendChild(dateEl);
-      cardBodyEl.appendChild(temperatureEl);
       cardBodyEl.appendChild(iconEl);
-      cardBodyEl.appendChild(lowEl);
-      cardBodyEl.appendChild(highEl);
+      cardBodyEl.appendChild(temperatureEl);
       cardBodyEl.appendChild(humidityEl);
       cardBodyEl.appendChild(windSpeedEl);
     }
