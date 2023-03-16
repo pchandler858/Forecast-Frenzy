@@ -200,7 +200,7 @@ function renderForecast(data) {
         "col-12",
         "forecast-card",
         "card",
-        "bg-primary",
+        "custom-bg",
         "text-light",
         "m-2",
         "ma-2"

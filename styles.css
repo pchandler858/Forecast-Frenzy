@@ -90,6 +90,10 @@ header {
   margin: 10px 0;
 }
 
+.custom-bg {
+  background-color: #323d4f;
+}
+
 .forecast-container {
   overflow-x: auto;
 }
