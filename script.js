@@ -34,6 +34,13 @@ async function getWeatherData(city) {
   const currentWeatherResponse = await fetch(currentWeatherUrl);
   const currentWeatherData = await currentWeatherResponse.json();
 
+  // Check if API response contains error message
+  if (currentWeatherData.message === "city not found") {
+    // Display alert indicating that city was not found
+    alert("City not found. Please enter a valid city name.");
+    return;
+  }
+
   // Get latitude and longitude from current weather data
   const lat = currentWeatherData.coord.lat;
   const lon = currentWeatherData.coord.lon;
@@ -52,6 +59,7 @@ async function getWeatherData(city) {
   renderCurrentWeather(currentWeatherData);
   renderForecast(forecastData);
 }
+
 
 // Function to add city to search history and store in local storage
 function addCityToSearchHistory(city) {
@@ -169,10 +177,10 @@ function renderForecast(data) {
 
   // Loop through each forecast item and render it
   forecastItems.forEach((item, index) => {
-    // Only render forecast items at 12:00pm
+    // Render forecast items at 12:00pm
+    console.log(item);
     if (item.dt_txt.indexOf("12:00:00") !== -1) {
       // Get required data from API response
-      console.log(item);
       const date = new Date(item.dt * 1000);
       const icon = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
       const temperature = Math.round(item.main.temp);
