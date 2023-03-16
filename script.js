@@ -40,7 +40,6 @@ async function getWeatherData(city) {
 
   // Build URL for forecast data
   const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${API_KEY}`;
-  console.log(forecastUrl);
 
   // Call API to get forecast data
   const forecastResponse = await fetch(forecastUrl);
@@ -173,6 +172,7 @@ function renderForecast(data) {
     // Only render forecast items at 12:00pm
     if (item.dt_txt.indexOf("12:00:00") !== -1) {
       // Get required data from API response
+      console.log(item);
       const date = new Date(item.dt * 1000);
       const icon = `https://openweathermap.org/img/w/${item.weather[0].icon}.png`;
       const temperature = Math.round(item.main.temp);
